@@ -16,7 +16,7 @@ public class ColeccionLibros {
     public static void menu(String[][] misLibros) {
         Scanner scanner = new Scanner(System.in);
         while (true) {
-            System.out.println("1) AGREGAR LIBRO");
+            System.out.println("\n1) AGREGAR LIBRO");
             System.out.println("2) BUSCAR LIBRO POR TITULO");
             System.out.println("3) MOSTRAR ESPACIOS USADOS");
             System.out.println("4) MOSTRAR ESPACIOS DISPONIBLES");
@@ -24,30 +24,42 @@ public class ColeccionLibros {
             System.out.print("Escoja alguna opción \n> ");
             switch (scanner.nextLine()) {
                 case "1":
-                    System.out.print("Ingrese el titulo \n> ");
-                    String titulo = scanner.nextLine();
-                    System.out.print("Ingrese el autor \n> ");
-                    String autor = scanner.nextLine();
-                    System.out.print("Ingrese la editorial \n> ");
-                    String editorial = scanner.nextLine();
-                    agregarLibro(misLibros, titulo, autor, editorial);
+                    mostrarMenuAgregarLibro(misLibros);
                     break;
                 case "2":
                     System.out.print("Ingrese el titulo \n> ");
                     mostrarBusquedaLibroPorTitulo(misLibros, scanner.nextLine());
                     break;
                 case "3":
+                    System.out.print("Espacios usados: ");
                     mostrarTotalLibros(misLibros);
                     break;
                 case "4":
+                    System.out.print("Espacios disponibles: ");
                     mostrarEspaciosDisponibles(misLibros);
                     break;
                 case "5":
                     mostrarTodaColeccion(misLibros);
                     break;
             }
-            System.out.println();
         }
+    }
+
+    public static void mostrarMenuAgregarLibro(String[][] misLibros) {
+
+        if (estaLaColeccionLlena(misLibros)) {
+            System.out.println("La colección esta llena.");
+            return;
+        }
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Ingrese el titulo \n> ");
+        String titulo = scanner.nextLine();
+        System.out.print("Ingrese el autor \n> ");
+        String autor = scanner.nextLine();
+        System.out.print("Ingrese la editorial \n> ");
+        String editorial = scanner.nextLine();
+        agregarLibro(misLibros, titulo, autor, editorial);
     }
 
     public static void probarMetodos(String[][] misLibros) {
@@ -59,15 +71,12 @@ public class ColeccionLibros {
         System.out.println("Espacios disponibles");
         mostrarEspaciosDisponibles(misLibros);
         mostrarBusquedaLibroPorTitulo(misLibros, "Utopía");
+        for (int i = 0; i < misLibros.length - 4; i++) {
+            agregarLibro(misLibros,String.valueOf(i),String.valueOf(i),String.valueOf(i));
+        }
     }
 
     public static void agregarLibro(String[][] misLibros, String titulo, String autor, String editorial) {
-
-        if (estaLaColeccionLlena(misLibros)) {
-            System.out.println("La colección esta llena.");
-            return;
-        }
-
         for (int i = 0; i < misLibros.length; i++) {
             if (misLibros[i][0] == null) {
                 misLibros[i][0] = autor;
@@ -84,6 +93,10 @@ public class ColeccionLibros {
 
     public static int totalLibros(String[][] misLibros) {
 
+        if (estaLaColeccionLlena(misLibros)) {
+            return misLibros.length;
+        }
+
         int totalLibros = -1;
 
         for (int i = 0; i < misLibros.length; i++) {
@@ -96,6 +109,10 @@ public class ColeccionLibros {
     }
 
     public static int espaciosDisponibles(String[][] misLibros) {
+
+        if (estaLaColeccionLlena(misLibros)) {
+            return 0;
+        }
 
         int espaciosDisponibles = -1;
 
@@ -138,7 +155,7 @@ public class ColeccionLibros {
             if (misLibros[i][0] == null) {
                 break;
             }
-            System.out.println(misLibros[i][0] + ", " + misLibros[i][1] + ", " + misLibros[i][2]);
+            System.out.println(misLibros[i][1] + ", " + misLibros[i][0] + ", " + misLibros[i][2]);
         }
     }
 }
