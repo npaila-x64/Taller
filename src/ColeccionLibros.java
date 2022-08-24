@@ -96,10 +96,8 @@ public class ColeccionLibros {
             return 0;
         }
 
-        int espaciosDisponibles = -1;
-
         int totalLibros = totalLibros(misLibros);
-        espaciosDisponibles = misLibros.length - totalLibros;
+        int espaciosDisponibles = misLibros.length - totalLibros;
 
         return espaciosDisponibles;
     }
