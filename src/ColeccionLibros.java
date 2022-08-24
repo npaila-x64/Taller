@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class ColeccionLibros {
 
     public static void main(String[] args) {
@@ -7,20 +9,55 @@ public class ColeccionLibros {
         agregarLibro(libros,"El Hobbit","J.R.R. Tolkien","Ed. Planeta");
         agregarLibro(libros,"Cujo","Stephen King","Ed. Que susto");
         agregarLibro(libros,"Un mundo feliz","Aldous Huxley","Ed. No Me Acuerdo");
-        agregarLibro(libros, "Utopía", "Tomás Moro", "Ed. Pingüino");
 
         menu(libros);
     }
 
     public static void menu(String[][] misLibros) {
+        Scanner scanner = new Scanner(System.in);
+        while (true) {
+            System.out.println("1) AGREGAR LIBRO");
+            System.out.println("2) BUSCAR LIBRO POR TITULO");
+            System.out.println("3) MOSTRAR ESPACIOS USADOS");
+            System.out.println("4) MOSTRAR ESPACIOS DISPONIBLES");
+            System.out.println("5) MOSTRAR TODA LA COLECCION");
+            System.out.print("Escoja alguna opción \n> ");
+            switch (scanner.nextLine()) {
+                case "1":
+                    System.out.print("Ingrese el titulo \n> ");
+                    String titulo = scanner.nextLine();
+                    System.out.print("Ingrese el autor \n> ");
+                    String autor = scanner.nextLine();
+                    System.out.print("Ingrese la editorial \n> ");
+                    String editorial = scanner.nextLine();
+                    agregarLibro(misLibros, titulo, autor, editorial);
+                    break;
+                case "2":
+                    System.out.print("Ingrese el titulo \n> ");
+                    mostrarBusquedaLibroPorTitulo(misLibros, scanner.nextLine());
+                    break;
+                case "3":
+                    mostrarTotalLibros(misLibros);
+                    break;
+                case "4":
+                    mostrarEspaciosDisponibles(misLibros);
+                    break;
+                case "5":
+                    mostrarTodaColeccion(misLibros);
+                    break;
+            }
+            System.out.println();
+        }
+    }
 
+    public static void probarMetodos(String[][] misLibros) {
+        agregarLibro(misLibros, "Utopía", "Tomás Moro", "Ed. Pingüino");
         System.out.println("Toda colección");
         mostrarTodaColeccion(misLibros);
         System.out.println("Total libros");
         mostrarTotalLibros(misLibros);
         System.out.println("Espacios disponibles");
         mostrarEspaciosDisponibles(misLibros);
-
         mostrarBusquedaLibroPorTitulo(misLibros, "Utopía");
     }
 
