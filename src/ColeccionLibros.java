@@ -91,11 +91,6 @@ public class ColeccionLibros {
     }
 
     public static int espaciosDisponibles(String[][] misLibros) {
-
-        if (estaLaColeccionLlena(misLibros)) {
-            return 0;
-        }
-
         int totalLibros = totalLibros(misLibros);
         int espaciosDisponibles = misLibros.length - totalLibros;
 
