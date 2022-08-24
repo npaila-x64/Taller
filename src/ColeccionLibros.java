@@ -13,7 +13,11 @@ public class ColeccionLibros {
 
     public static void menu(String[][] misLibros) {
 
+        System.out.println("Toda colección");
         mostrarTodaColeccion(misLibros);
+        System.out.println("Total libros");
+        mostrarTotalLibros(misLibros);
+        System.out.println("Espacios disponibles");
         mostrarEspaciosDisponibles(misLibros);
 
     }
@@ -40,7 +44,16 @@ public class ColeccionLibros {
     }
 
     public static int totalLibros(String[][] misLibros) {
-        return 0;
+
+        int totalLibros = -1;
+
+        for (int i = 0; i < misLibros.length; i++) {
+            if (misLibros[i][0] == null) {
+                totalLibros = i;
+                break;
+            }
+        }
+        return totalLibros;
     }
 
     public static int espaciosDisponibles(String[][] misLibros) {
@@ -58,7 +71,7 @@ public class ColeccionLibros {
     }
 
     public static void mostrarTotalLibros(String[][] misLibros) {
-
+        System.out.println(totalLibros(misLibros));
     }
 
     public static void mostrarEspaciosDisponibles(String[][] misLibros) {
