@@ -14,6 +14,7 @@ public class ColeccionLibros {
     public static void menu(String[][] misLibros) {
 
         mostrarTodaColeccion(misLibros);
+        mostrarEspaciosDisponibles(misLibros);
 
     }
 
@@ -43,7 +44,17 @@ public class ColeccionLibros {
     }
 
     public static int espaciosDisponibles(String[][] misLibros) {
-        return 0;
+
+        int espaciosDisponibles = -1;
+
+        for (int i = 0; i < misLibros.length; i++) {
+            if (misLibros[i][0] == null) {
+                espaciosDisponibles = 100 - i;
+                break;
+            }
+        }
+
+        return espaciosDisponibles;
     }
 
     public static void mostrarTotalLibros(String[][] misLibros) {
@@ -51,7 +62,7 @@ public class ColeccionLibros {
     }
 
     public static void mostrarEspaciosDisponibles(String[][] misLibros) {
-
+        System.out.println(espaciosDisponibles(misLibros));
     }
 
     public static void mostrarBusquedaLibroAutor(String[][] misLibros, String autor) {
