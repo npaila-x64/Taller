@@ -62,20 +62,6 @@ public class ColeccionLibros {
         agregarLibro(misLibros, titulo, autor, editorial);
     }
 
-    public static void probarMetodos(String[][] misLibros) {
-        agregarLibro(misLibros, "Utopía", "Tomás Moro", "Ed. Pingüino");
-        System.out.println("Toda colección");
-        mostrarTodaColeccion(misLibros);
-        System.out.println("Total libros");
-        mostrarTotalLibros(misLibros);
-        System.out.println("Espacios disponibles");
-        mostrarEspaciosDisponibles(misLibros);
-        mostrarBusquedaLibroPorTitulo(misLibros, "Utopía");
-        for (int i = 0; i < misLibros.length - 4; i++) {
-            agregarLibro(misLibros,String.valueOf(i),String.valueOf(i),String.valueOf(i));
-        }
-    }
-
     public static void agregarLibro(String[][] misLibros, String titulo, String autor, String editorial) {
         for (int i = 0; i < misLibros.length; i++) {
             if (misLibros[i][0] == null) {
