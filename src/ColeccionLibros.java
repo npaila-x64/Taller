@@ -63,18 +63,14 @@ public class ColeccionLibros {
     }
 
     public static void agregarLibro(String[][] misLibros, String titulo, String autor, String editorial) {
-        for (int i = 0; i < misLibros.length; i++) {
-            if (misLibros[i][0] == null) {
-                misLibros[i][0] = autor;
-                misLibros[i][1] = titulo;
-                misLibros[i][2] = editorial;
-                break;
-            }
-        }
+        int indice = totalLibros(misLibros);
+        misLibros[indice][0] = autor;
+        misLibros[indice][1] = titulo;
+        misLibros[indice][2] = editorial;
     }
 
     public static boolean estaLaColeccionLlena(String[][] misLibros) {
-        return misLibros[99][0] != null;
+        return misLibros[misLibros.length - 1][0] != null;
     }
 
     public static int totalLibros(String[][] misLibros) {
@@ -95,19 +91,8 @@ public class ColeccionLibros {
     }
 
     public static int espaciosDisponibles(String[][] misLibros) {
-
-        if (estaLaColeccionLlena(misLibros)) {
-            return 0;
-        }
-
-        int espaciosDisponibles = -1;
-
-        for (int i = 0; i < misLibros.length; i++) {
-            if (misLibros[i][0] == null) {
-                espaciosDisponibles = 100 - i;
-                break;
-            }
-        }
+        int totalLibros = totalLibros(misLibros);
+        int espaciosDisponibles = misLibros.length - totalLibros;
 
         return espaciosDisponibles;
     }
@@ -121,11 +106,7 @@ public class ColeccionLibros {
     }
 
     public static void mostrarBusquedaLibroPorTitulo(String[][] misLibros, String titulo) {
-        for (int i = 0; i < misLibros.length; i++) {
-            if (misLibros[i][0] == null) {
-                System.out.println("No se encuentra disponible el libro.");
-                break;
-            }
+        for (int i = 0; i < totalLibros(misLibros); i++) {
             if (misLibros[i][1].equals(titulo)) {
                 System.out.println("El libro si se encuentra disponible:");
                 System.out.println("Titulo: " + misLibros[i][1]);
@@ -137,10 +118,7 @@ public class ColeccionLibros {
     }
 
     public static void mostrarTodaColeccion(String[][] misLibros) {
-        for (int i = 0; i < misLibros.length; i++) {
-            if (misLibros[i][0] == null) {
-                break;
-            }
+        for (int i = 0; i < totalLibros(misLibros); i++) {
             System.out.println(misLibros[i][1] + ", " + misLibros[i][0] + ", " + misLibros[i][2]);
         }
     }
