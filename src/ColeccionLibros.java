@@ -79,8 +79,7 @@ public class ColeccionLibros {
     }
 
     public static int espaciosDisponibles(String[][] misLibros) {
-        int espaciosDisponibles = misLibros.length - totalLibros(misLibros);
-        return espaciosDisponibles;
+        return misLibros.length - totalLibros(misLibros);
     }
 
     public static void mostrarTotalLibros(String[][] misLibros) {
