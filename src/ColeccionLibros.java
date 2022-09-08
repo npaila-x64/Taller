@@ -44,7 +44,6 @@ public class ColeccionLibros {
             System.out.println("La colección esta llena.");
             return;
         }
-        Scanner scanner = new Scanner(System.in);
         System.out.print("Ingrese el titulo \n> ");
         String titulo = scanner.nextLine();
         System.out.print("Ingrese el autor \n> ");
@@ -80,8 +79,7 @@ public class ColeccionLibros {
     }
 
     public static int espaciosDisponibles(String[][] misLibros) {
-        int totalLibros = totalLibros(misLibros);
-        int espaciosDisponibles = misLibros.length - totalLibros;
+        int espaciosDisponibles = misLibros.length - totalLibros(misLibros);
         return espaciosDisponibles;
     }
 
@@ -109,9 +107,10 @@ public class ColeccionLibros {
     }
 
     public static void mostrarTodaColeccion(String[][] misLibros) {
-        for (int i = 0; i < totalLibros(misLibros); i++) {
-            System.out.println(misLibros[i][1] + ", " + misLibros[i][0] + ", " + misLibros[i][2]);
+        for (int indice = 0; indice < totalLibros(misLibros); indice++) {
+            System.out.println(
+                    String.join(", ",
+                            misLibros[indice][1], misLibros[indice][0], misLibros[indice][2]));
         }
     }
 }
-
