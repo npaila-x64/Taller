@@ -94,12 +94,15 @@ public class ColeccionLibros {
 
     public static void mostrarBusquedaLibroPorTitulo(String[][] misLibros) {
         System.out.print("Ingrese el titulo \n> ");
+        String titulo = scanner.nextLine();
         for (int indice = 0; indice < totalLibros(misLibros); indice++) {
-            if (misLibros[indice][1].equals(scanner.nextLine())) {
-                System.out.println("El libro si se encuentra disponible:");
-                System.out.println("Titulo: " + misLibros[indice][1]);
-                System.out.println("Autor: " + misLibros[indice][0]);
-                System.out.println("Editorial: " + misLibros[indice][2]);
+            if (misLibros[indice][1].equals(titulo)) {
+                System.out.println(String.format("""
+                        El libro si se encuentra disponible:
+                        Titulo:    %s
+                        Autor:     %s
+                        Editorial: %s
+                        """, misLibros[indice][1], misLibros[indice][0], misLibros[indice][2]));
                 break;
             }
         }
